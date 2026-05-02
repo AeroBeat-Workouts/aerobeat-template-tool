@@ -1,10 +1,11 @@
 {
   "$schema": "https://chickensoft.games/schemas/addons.schema.json",
   "addons": {
-    // Batch 1 pins the foundational core contract for tool work.
-    "aerobeat-core": {
-      "url": "git@github.com:AeroBeat-Workouts/aerobeat-core.git",
-      "checkout": "v0.1.0",
+    // Tool-template bootstrap pins the shared tool/workflow contract.
+    // `main` is intentional until aerobeat-tool-core starts tagging releases.
+    "aerobeat-tool-core": {
+      "url": "git@github.com:AeroBeat-Workouts/aerobeat-tool-core.git",
+      "checkout": "main",
       "subfolder": "/"
     },
     // GUT drives the repo-local test suite inside the hidden testbed/workbench.

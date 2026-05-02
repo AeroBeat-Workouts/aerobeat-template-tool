@@ -1,16 +1,22 @@
 # AeroBeat Tool Template
 
-This is the official template for creating a **Tool** repository within the AeroBeat ecosystem.
+This is the official template for creating **Tool** repositories within the current AeroBeat v1 architecture.
 
-A **Tool** is a reusable service or singleton manager (e.g., API Client, Analytics, Discord Integration). It is designed to be modular and plugged into an **Assembly**.
+It should be read against the locked product direction from `aerobeat-docs`:
+
+- **Primary release target:** PC community first
+- **Official v1 gameplay features:** Boxing and Flow
+- **Official v1 gameplay input:** camera only
+- **Tool stance:** tools should stay workflow-oriented and gameplay-mode agnostic enough to support the current product slice without implying equal-status future gameplay/input/platform scope
+- **Tool lane ownership:** shared tool-side DTOs, progress/result models, and workflow interfaces belong in `aerobeat-tool-core`; concrete authoring/import/export/validation tooling belongs in specific `aerobeat-tool-*` repos
 
 ## 📋 Repository Details
 
-*   **Type:** Tool (Service/Module)
-*   **License:** **MPL 2.0** (Weak Copyleft / Library)
-*   **Dependencies:**
-    *   `aerobeat-tool-core` (Canonical shared tool/workflow contract)
-    *   `aerobeat-vendor-*` (Allowed)
+- **Type:** Tool template
+- **License:** **Mozilla Public License 2.0 (MPL 2.0)**
+- **Dependency contract:**
+  - `aerobeat-tool-core` — required shared tool/workflow contract
+  - additional adjacent lane/core repos only when the specific tool actually consumes them (commonly `aerobeat-content-core` or `aerobeat-asset-core`)
 
 ## GodotEnv development flow
 
@@ -33,7 +39,7 @@ cd .testbed
 godotenv addons install
 ```
 
-That restores this repo's current dev/test manifest into `.testbed/addons/`. In the lane-based architecture, Tool repos should describe this dependency as `aerobeat-tool-core`.
+That restores this repo's current dev/test manifest into `.testbed/addons/`. Canonically, Tool templates should keep the baseline manifest narrow: `aerobeat-tool-core` plus test-only tooling.
 
 ### Open the workbench
 
@@ -43,7 +49,7 @@ From the repo root:
 godot --editor --path .testbed
 ```
 
-Use this `.testbed/` project as the canonical direct-development and bugfinding surface for tool work.
+Use this `.testbed/` project as the canonical direct-development and bugfinding surface for tool-template work.
 
 ### Import smoke check
 
@@ -67,6 +73,8 @@ godot --headless --path .testbed --script addons/gut/gut_cmdln.gd \
 ### Validation notes
 
 - `.testbed/addons.jsonc` is the committed dev/test dependency contract.
-- The current manifest still pins the transition-era `aerobeat-core` package key to `v0.1.0` alongside GUT `main`. Canonical lane ownership is `aerobeat-tool-core`.
-- Repo-local unit tests live under `.testbed/tests/`; the hidden workbench uses the committed `.testbed/src -> ../src` bridge for this repo's `src/`-rooted package layout.
+- The canonical template manifest for this repo is `aerobeat-tool-core` + `gut`.
+- `aerobeat-tool-core` is currently pinned to `main` intentionally because the repo does not yet have release tags; switch to a tag once tagged releases exist.
+- If a concrete tool needs adjacent lane repos, add them intentionally rather than restoring a universal `aerobeat-core` baseline.
+- Repo-local unit tests live under `.testbed/tests/` and currently validate repo metadata plus the template stub contract.
 - The current package shape is consumed from the repo root (`subfolder: "/"`) for downstream installs.

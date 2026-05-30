@@ -20,6 +20,8 @@ func test_readme_keeps_v1_tool_template_truth() -> void:
 	assert_true(readme_text.contains("camera only"), "README should preserve camera-only official gameplay input wording")
 	assert_true(readme_text.contains("gameplay-mode agnostic"), "README should preserve the tool-lane scope boundary")
 	assert_true(readme_text.contains("aerobeat-tool-core"), "README should point at the tool-core baseline")
+	assert_true(readme_text.contains("clone-time placeholder only"), "README should explain that AeroToolManager is only a placeholder")
+	assert_true(readme_text.contains("must rename"), "README should require post-clone manager renaming")
 
 func test_plugin_cfg_description_stays_template_specific() -> void:
 	var config := ConfigFile.new()

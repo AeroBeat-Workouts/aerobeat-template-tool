@@ -10,6 +10,20 @@ It should be read against the locked product direction from `aerobeat-docs`:
 - **Tool stance:** tools should stay workflow-oriented and gameplay-mode agnostic enough to support the current product slice without implying equal-status future gameplay/input/platform scope
 - **Tool lane ownership:** shared tool-side DTOs, progress/result models, and workflow interfaces belong in `aerobeat-tool-core`; concrete authoring/import/export/validation tooling belongs in specific `aerobeat-tool-*` repos
 
+## Naming rule: rename the manager after cloning
+
+This template intentionally ships with `src/AeroToolManager.gd` as a **clone-time placeholder only**.
+
+After creating a real repo from this template, a human or agent must rename that file/class/autoload entry to the repo's actual public manager name before treating the repo as real work.
+
+Examples:
+
+- `aerobeat-tool-api` → `AeroApiManager.gd`
+- `aerobeat-tool-settings` → `AeroSettingsManager.gd`
+- another import/export tool → a repo-specific manager name that matches its contract
+
+`AeroToolManager` is **not** an acceptable shipped final runtime identity. The placeholder exists only because GitHub template clones do not yet perform token replacement for file/class names.
+
 ## 📋 Repository Details
 
 - **Type:** Tool template
